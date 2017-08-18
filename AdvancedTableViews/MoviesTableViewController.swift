@@ -23,20 +23,13 @@ class MoviesTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    
     //MARK: Inserting Items
     //this is a UIViewController Method:
     //a callback for editing mode change.
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         if isSwipe{return}
-        //Quick and Dirty!
-        //tableView.reloadData()
-        
-        //fori + foreach = enumareted
-        
-        
-        
+
         tableView.beginUpdates()// call this method whenever we batch multiple operations
         for (i, movieSet) in ds.enumerated(){
             let idx = IndexPath(row: movieSet.movies.count, section: i)
@@ -65,15 +58,6 @@ class MoviesTableViewController: UITableViewController {
         isSwipe = false
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         
         if indexPath.row >= ds[indexPath.section].movies.count{
@@ -82,7 +66,6 @@ class MoviesTableViewController: UITableViewController {
         
         return .delete
     }
-    
     
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,7 +84,6 @@ class MoviesTableViewController: UITableViewController {
         //the section we are in (Genre)
         let section = indexPath.section
         let row = indexPath.row
-        
         
         if ds[section].movies.count == row{
             //tableview recycles
@@ -130,27 +112,10 @@ class MoviesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return CGFloat(100)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //if we are passing to movieDetailsViewController-> pass the movie in to the dest
-        
-        //        if segue.destination is DetailsViewController{
-        //
-        //        }
-        
         if let dest = segue.destination as? DetailsViewController,
             let movie = sender as? Movie{
             dest.data = movie
@@ -159,10 +124,6 @@ class MoviesTableViewController: UITableViewController {
             let movie = sender as? Movie{
             dest.data = movie
         }
-        //
-        //
-        //        let dd = segue.destination as! DetailsViewController
-        //        dd.data = sender as! Movie
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -184,13 +145,7 @@ class MoviesTableViewController: UITableViewController {
         }
       
     }
-    
-    
-    
-    
-    
-    
-    
+
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
@@ -211,7 +166,6 @@ class MoviesTableViewController: UITableViewController {
           addNewItem(atIndexPath: indexPath)
         }
     }
-    
     
     func addNewItem(atIndexPath indexPath: IndexPath){
         // Create a new instance of the appropriate class, Movie()
@@ -239,35 +193,10 @@ class MoviesTableViewController: UITableViewController {
             if row < 0 {row = 0}
             return IndexPath(row: row, section: section)
         }
-        
-        
+
         return proposedDestinationIndexPath
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     //MARK: Rearranging
     
     // Override to support rearranging the table view.
@@ -287,9 +216,7 @@ class MoviesTableViewController: UITableViewController {
         }
         //notify the tableview
     }
-    
-    
-    
+
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
@@ -298,17 +225,6 @@ class MoviesTableViewController: UITableViewController {
         }
         return true
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
